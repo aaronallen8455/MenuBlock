@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="MenuBlockPlug" type="AAllen\MenuBlock\Plugin\Topmenu" disabled="false" sortOrder="1"/>
+    </type>
+    <preference for="AAllen\MenuBlock\Api\Data\BlockInterface" type="AAllen\MenuBlock\Model\Block" />
+    <virtualType name="BlockGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilters</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BlockGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">AAllen\MenuBlock\Model\Resource\Block\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">BlockGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AAllen\MenuBlock\Model\ResourceModel\Block\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aallen_menublock_block</argument>
+            <argument name="resourceModel" xsi:type="string">AAllen\MenuBlock\Model\ResourceModel\Block</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="menu_block_listing_data_source" xsi:type="string">AAllen\MenuBlock\Model\ResourceModel\Block\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
