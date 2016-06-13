@@ -20,12 +20,14 @@
             <argument name="filterPool" xsi:type="object" shared="false">BlockGridFilterPool</argument>
         </arguments>
     </virtualType>
-    <virtualType name="AAllen\MenuBlock\Model\ResourceModel\Block\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <type name="AAllen\MenuBlock\Model\ResourceModel\Block\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">aallen_menublock_block</argument>
+            <argument name="eventPrefix" xsi:type="string">menublock_block_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">block_grid_collection</argument>
             <argument name="resourceModel" xsi:type="string">AAllen\MenuBlock\Model\ResourceModel\Block</argument>
         </arguments>
-    </virtualType>
+    </type>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

@@ -113,7 +113,7 @@ class Form extends Generic
                 'label' => __('Width'), 
                 'title' => __('Width'), 
                 'required' => false, 
-                'note' => 'Sets the width in pixels of the CMS block if specified.']
+                'note' => 'Sets the width in pixels of the CMS block if one is specified.']
         );
 
         $fieldset->addField(
@@ -131,11 +131,11 @@ class Form extends Generic
             'css',
             'text',
             [
-                'label' => __('CSS Class'),
-                'title' => __('CSS Class'),
+                'label' => __('CSS Classes'),
+                'title' => __('CSS Classes'),
                 'name' => 'css',
                 'required' => false,
-                'note' => 'Additional CSS classes.'
+                'note' => 'Comma-separated list of additional CSS classes to apply to this element.'
             ]
         );
 
@@ -162,6 +162,32 @@ class Form extends Generic
                 'options' => ['1' => '_top', '2' => '_blank']
             ]
         );
+
+        /* Check is single store mode */
+        if (!$this->_storeManager->isSingleStoreMode()) {
+            $field = $fieldset->addField(
+                'store_id',
+                'multiselect',
+                [
+                    'name' => 'stores[]',
+                    'label' => __('Store View'),
+                    'title' => __('Store View'),
+                    'required' => true,
+                    'values' => $this->_systemStore->getStoreValuesForForm(false, true)
+                ]
+            );
+            $renderer = $this->getLayout()->createBlock(
+                'Magento\Backend\Block\Store\Switcher\Form\Renderer\Fieldset\Element'
+            );
+            $field->setRenderer($renderer);
+        } else {
+            $fieldset->addField(
+                'store_id',
+                'hidden',
+                ['name' => 'stores[]', 'value' => $this->_storeManager->getStore(true)->getId()]
+            );
+            $model->setStoreId($this->_storeManager->getStore(true)->getId());
+        }
 
         $fieldset->addField(
             'is_active',

@@ -33,7 +33,7 @@ class ChildBlockId implements OptionSourceInterface
     {
         $array = [];
         //basic means return a simple array like [id => name]
-        if (!$basic) $array[] = ['label' => 'No CMS Block', 'value' => ''];
+        if (!$basic) $array[] = ['label' => 'No CMS Block', 'value' => null];
         /** @var \Magento\Cms\Model\ResourceModel\Block\Collection $blocks */
         $blocks = $this->_blockCollectionFactory->create();
         $blocks->setPageSize(15);

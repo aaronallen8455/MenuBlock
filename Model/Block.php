@@ -167,6 +167,16 @@ class Block extends AbstractModel implements BlockInterface
     }
 
     /**
+     * Receive block store ids
+     *
+     * @return int[]
+     */
+    public function getStores()
+    {
+        return $this->hasData('stores') ? $this->getData('stores') : $this->getData('store_id');
+    }
+
+    /**
      * Is active
      *
      * @return bool|null
