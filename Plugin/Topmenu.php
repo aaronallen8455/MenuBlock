@@ -55,7 +55,7 @@ class Topmenu
         /** @var Collection $blocks */
         $blocks = $this->_blockCollectionFactory->create();
         $blocks->addFilter('is_active', 1);
-        $blocks->setOrder('position', Collection::SORT_ORDER_DESC);
+        $blocks->setOrder('position', Collection::SORT_ORDER_ASC);
         if ($blocks->count() > 0) {
             //break the html up
             $html = preg_split('/(?<!^)(?=<li\s+class="level0)/', $html);
@@ -70,7 +70,7 @@ class Topmenu
                     }
                 }
 
-                $content = '<li class="level0 level-top parent ui-menu-item ' . ($block->getCss()?:'') . '" role="presentation">';
+                $content = '<li class="level0 level-top ' . ($block->getChildBlockId()?'parent ':'') . 'ui-menu-item ' . ($block->getCss()?:'') . '" role="presentation">';
                 $content .= '<a href="' . ($url?:'') . '" class="level-top" target="' . $block->getAvailableTargets()[$block->getTarget()] . '" name="' . $block->getName() . '">';
                 $content .= htmlentities($block->getName());
                 $content .= '</a>';
