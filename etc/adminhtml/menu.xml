@@ -2,9 +2,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <!--<add id="AAllen_MenuLink::menu_elements" title="AAllen Menu Elements" module="AAllen_MenuLink" resource="AAllen_MenuLink::menu_elements"
-             sortOrder="50" parent="Magento_Backend::content" /> -->
+        <add id="AAllen_MenuBlock::menu_elements" title="AAllen Menu Elements" module="AAllen_MenuBlock" resource="AAllen_MenuBlock::menu_elements"
+             sortOrder="50" parent="Magento_Backend::content" />
         <add id="AAllen_MenuBlock::blocks" title="Menu Blocks" module="AAllen_MenuBlock" resource="AAllen_MenuLink::blocks"
-             sortOrder="1" parent="AAllen_MenuLink::menu_elements" action="menublock/block" />
+             sortOrder="1" parent="AAllen_MenuBlock::menu_elements" action="menublock/block" />
     </menu>
 </config>

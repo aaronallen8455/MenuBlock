@@ -308,7 +308,7 @@
         </column>
         <column name="is_active">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">AAllen\MenuBlock\Model\Block\Source\isActive</item>
+                <item name="options" xsi:type="object">AAllen\MenuBlock\Model\Block\Source\IsActive</item>
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">select</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
